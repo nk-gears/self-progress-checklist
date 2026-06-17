@@ -1,3 +1,7 @@
 **/node_modules
 frontend/node_modules
 frontend/node_modules/@alloc/quick-lru/package.json
+.vercel
+deploy.config.sh
+.env
+.env.local

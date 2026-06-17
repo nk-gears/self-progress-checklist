@@ -3,7 +3,10 @@ import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const BASE = '/bk-chart/'
+
 export default defineConfig({
+  base: BASE,
   plugins: [
     vue(),
     VitePWA({
@@ -17,8 +20,8 @@ export default defineConfig({
         background_color: '#f5f3ff',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/',
-        start_url: '/',
+        scope: BASE,
+        start_url: BASE,
         icons: [
           { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icon-512.png', sizes: '512x512', type: 'image/png' },

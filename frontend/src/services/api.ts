@@ -6,6 +6,14 @@ function token(): string | null {
   return localStorage.getItem(TOKEN_KEY)
 }
 
+export class ApiError extends Error {
+  status: number
+  constructor(message: string, status: number) {
+    super(message)
+    this.status = status
+  }
+}
+
 async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
   const headers: Record<string, string> = { 'Content-Type': 'application/json' }
   const t = token()
@@ -17,7 +25,7 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
     body: body !== undefined ? JSON.stringify(body) : undefined,
   })
   const data = await res.json()
-  if (!data.success) throw new Error(data.message || `Request failed (${res.status})`)
+  if (!data.success) throw new ApiError(data.message || `Request failed (${res.status})`, res.status)
   return data as T
 }
 

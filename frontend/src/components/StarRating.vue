@@ -6,7 +6,7 @@
       @click.stop="emit('update:modelValue', modelValue === n ? 0 : n)"
       :disabled="disabled"
       class="text-xl transition-all active:scale-90 disabled:cursor-default"
-      :class="n <= modelValue ? 'text-amber-400' : 'text-gray-200'"
+      :class="n <= modelValue ? activeClass : 'text-gray-200'"
     >
       ★
     </button>
@@ -14,9 +14,12 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+withDefaults(defineProps<{
   modelValue: number   // 0–5
   disabled?: boolean
-}>()
+  activeClass?: string
+}>(), {
+  activeClass: 'text-amber-400',
+})
 const emit = defineEmits<{ (e: 'update:modelValue', v: number): void }>()
 </script>

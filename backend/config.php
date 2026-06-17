@@ -11,11 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
 // On FTP hosting: edit the fallback values directly here.
 // On servers with env vars: set DB_HOST, DB_NAME, DB_USER, DB_PASSWORD.
 $host   = getenv('DB_HOST')     ?: 'localhost';
-$dbname = getenv('DB_NAME')     ?: 'your_db_name';
-$user   = getenv('DB_USER')     ?: 'your_db_user';
-$pass   = getenv('DB_PASSWORD') ?: 'your_db_password';
-
-define('GOOGLE_CLIENT_ID', getenv('GOOGLE_CLIENT_ID') ?: 'your-google-client-id.apps.googleusercontent.com');
+$dbname = getenv('DB_NAME')     ?: 'u388678206_wB70c';
+$user   = getenv('DB_USER')     ?: 'u388678206_NQZQ0';
+$pass   = getenv('DB_PASSWORD') ?: 'PLjGQbBDYn';
+define('GOOGLE_CLIENT_ID', getenv('GOOGLE_CLIENT_ID') ?: '185884239414-kja6ggi7vfjfp11jdre6ofb16lb1npft.apps.googleusercontent.com');
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
@@ -39,7 +38,7 @@ function validateRequired(array $input, array $fields): array {
     return array_filter($fields, fn($f) => !isset($input[$f]) || $input[$f] === '');
 }
 
-function fetchRow(string $sql, array $params, string $types = ''): array|false {
+function fetchRow(string $sql, array $params, string $types = '') {
     global $pdo;
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
@@ -53,7 +52,7 @@ function fetchAll(string $sql, array $params, string $types = ''): array {
     return $stmt->fetchAll();
 }
 
-function executeInsert(string $sql, array $params, string $types = ''): int|string {
+function executeInsert(string $sql, array $params, string $types = '') {
     global $pdo;
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);

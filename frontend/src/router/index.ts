@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/login',     component: () => import('@/views/LoginView.vue'),     meta: { requiresGuest: true } },
     { path: '/home',      component: () => import('@/views/HomeView.vue'),      meta: { requiresAuth: true } },

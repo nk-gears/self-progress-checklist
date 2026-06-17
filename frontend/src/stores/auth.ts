@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { api, TOKEN_KEY, type ApiUser } from '@/services/api'
+import { api, ApiError, TOKEN_KEY, type ApiUser } from '@/services/api'
 import { useDevModeStore } from './devMode'
 import { MOCK_USER } from '@/services/mockData'
 import type { User } from '@/types'
@@ -43,8 +43,13 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const { user: u } = await api.getProfile()
       user.value = mapUser(u)
-    } catch {
-      localStorage.removeItem(TOKEN_KEY)
+    } catch (e) {
+      // Only drop the saved session if the server explicitly rejected the
+      // token (401). Network blips or transient server errors must not log
+      // the user out — the token itself stays valid server-side forever.
+      if (e instanceof ApiError && e.status === 401) {
+        localStorage.removeItem(TOKEN_KEY)
+      }
     } finally {
       loading.value = false
     }
