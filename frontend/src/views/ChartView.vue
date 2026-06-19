@@ -328,9 +328,9 @@ function localStr(d: Date): string {
 }
 
 const DHARANA_AIMS = [
-  'Win Over Anger', 'Remain in Silence', 'Practice Tolerance',
-  'Stay in Soul Consciousness', 'Be a Master', 'Maintain Sweetness',
-  'Practice Humility', 'Stay in Love', 'Be Peaceful', 'Other…',
+  'Win Over Anger', 'Control on Mobile Usage', 'Procrastination (Postponing Things)',
+  'Comparing and Competing with Others', 'Seeing Weaknesses in Others (Paradarshan)', 'Lack of Punctuality in Daily Routine',
+  'Making Excuses for Mistake', 'I Am Always Right" Attitude', 'Other…',
 ]
 
 const extraHourOptions = [

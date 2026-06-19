@@ -5,8 +5,8 @@
     <div class="card bg-gradient-to-br from-primary-700 to-indigo-600 border-0 text-white">
       <div class="text-center py-2">
         <div class="text-3xl mb-1">🌟</div>
-        <h1 class="text-xl font-extrabold tracking-tight">Move towards Sampoornatha</h1>
-        <p class="text-primary-200 text-sm mt-0.5">Tool for self transformation for Baba's Pratyakshatha</p>
+        <h1 class="text-xl font-extrabold tracking-tight">Self progress Chart</h1>
+        <p class="text-primary-200 text-sm mt-0.5">Step towards Sampoornatha</p>
       </div>
     </div>
 
@@ -39,6 +39,43 @@
 
     <!-- ── Summary stats ──────────────────────────────────────────────────── -->
     <div class="space-y-3">
+      <!-- Yoga Target -->
+      <button class="card flex items-center gap-4 w-full text-left" @click="showTargetPicker = true">
+        <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center text-xl flex-shrink-0">🎯</div>
+        <div class="flex-1">
+          <div class="font-semibold text-gray-700">Yoga Target</div>
+          <div class="text-xs text-gray-400">Tap to change your target level</div>
+        </div>
+        <div class="flex items-center gap-1 text-2xl font-extrabold text-primary-700">
+          {{ selectedYogaTarget.hours }} {{ selectedYogaTarget.label }}
+          <span class="text-primary-400 text-base">▼</span>
+        </div>
+      </button>
+
+      <!-- Yoga Target picker sheet -->
+      <Teleport to="body">
+        <Transition name="sheet">
+          <div v-if="showTargetPicker" class="fixed inset-0 bg-black/50 z-50 flex items-end" @click.self="showTargetPicker = false">
+            <div class="bg-white w-full rounded-t-3xl p-6 safe-area-bottom max-w-lg mx-auto">
+              <h3 class="font-bold text-gray-800 mb-4">Choose Yoga target</h3>
+              <div class="space-y-2 max-h-[60vh] overflow-y-auto">
+                <button
+                  v-for="t in yogaTargets"
+                  :key="t.hours"
+                  @click="selectYogaTarget(t.hours)"
+                  class="w-full flex items-center justify-between px-4 py-3 rounded-xl border"
+                  :class="t.hours === yogaTargetHours ? 'border-primary-400 bg-primary-50' : 'border-gray-100'"
+                >
+                  <span class="font-semibold text-gray-700">{{ t.label }}</span>
+                  <span class="text-sm text-gray-400">{{ t.hours }} hours</span>
+                </button>
+              </div>
+              <button class="btn-primary w-full mt-4" @click="showTargetPicker = false">Done</button>
+            </div>
+          </div>
+        </Transition>
+      </Teleport>
+
       <!-- Amritvela Achieved -->
       <div class="card flex items-center gap-4">
         <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center text-xl flex-shrink-0">🏳️</div>
@@ -56,7 +93,9 @@
           <div class="font-semibold text-gray-700">Total Points</div>
           <div class="text-xs text-gray-400">Cumulative across all days</div>
         </div>
-        <div class="text-2xl font-extrabold text-amber-600">{{ stats.totalPoints }}</div>
+        <div class="text-2xl font-extrabold text-amber-600">
+          {{ stats.totalPoints }} <span class="text-base font-bold">({{ targetPercent }}%)</span>
+        </div>
       </div>
 
       <!-- Current Streak -->
@@ -180,6 +219,38 @@ const todayEntry = computed(() => store.todayEntry)
 
 const todayFormatted = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
 
+// ── Yoga target ────────────────────────────────────────────────────────────────
+
+const YOGA_TARGET_KEY = 'spc_yoga_target_hours'
+const yogaTargets = [
+  { label: 'Starter',  hours: 108 },
+  { label: 'Regular',  hours: 208 },
+  { label: 'Bronze',   hours: 308 },
+  { label: 'Silver',   hours: 408 },
+  { label: 'Gold',     hours: 508 },
+  { label: 'Diamond',  hours: 708 },
+  { label: 'Platinum', hours: 1008 },
+]
+
+const showTargetPicker = ref(false)
+const yogaTargetHours  = ref(Number(localStorage.getItem(YOGA_TARGET_KEY)) || yogaTargets[4].hours)
+
+const selectedYogaTarget = computed(() =>
+  yogaTargets.find(t => t.hours === yogaTargetHours.value) ?? yogaTargets[4]
+)
+
+function selectYogaTarget(hours: number) {
+  yogaTargetHours.value = hours
+  localStorage.setItem(YOGA_TARGET_KEY, String(hours))
+  showTargetPicker.value = false
+}
+
+const targetPercent = computed(() => {
+  const maxPossible = stats.value.totalDays * 50
+  if (!maxPossible) return 0
+  return Math.round((stats.value.totalPoints * 100) / maxPossible)
+})
+
 // ── Today cats breakdown ──────────────────────────────────────────────────────
 
 const todayCats = computed(() => {
@@ -242,3 +313,8 @@ const shortDate = (date: string) => {
 
 onMounted(async () => { await store.loadAllEntries() })
 </script>
+
+<style scoped>
+.sheet-enter-active, .sheet-leave-active { transition: opacity 0.2s, transform 0.25s; }
+.sheet-enter-from, .sheet-leave-to       { opacity: 0; transform: translateY(100%); }
+</style>
