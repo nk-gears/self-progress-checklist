@@ -3,8 +3,8 @@
 
     <!-- ── Header ─────────────────────────────────────────────────────────── -->
     <div class="card text-center py-4">
-      <h1 class="text-xl font-extrabold text-primary-800">Daily Self-Checking</h1>
-      <p class="text-sm text-gray-400 mt-0.5">Self Transformation for Baba's Pratyakshatha</p>
+      <h1 class="text-xl font-extrabold text-primary-800">{{ t('chart.title') }}</h1>
+      <p class="text-sm text-gray-400 mt-0.5">{{ t('chart.tagline') }}</p>
       <div class="flex items-center justify-center gap-2 mt-3 text-sm font-medium text-primary-700">
         <button @click="shiftDate(-1)" class="w-7 h-7 flex items-center justify-center rounded-full text-primary-500 hover:bg-primary-50 flex-shrink-0">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -30,10 +30,10 @@
       <Transition name="sheet">
         <div v-if="showPicker" class="fixed inset-0 bg-black/50 z-50 flex items-end" @click.self="showPicker = false">
           <div class="bg-white w-full rounded-t-3xl p-6 safe-area-bottom">
-            <h3 class="font-bold text-gray-800 mb-4">Choose date</h3>
+            <h3 class="font-bold text-gray-800 mb-4">{{ t('chart.chooseDate') }}</h3>
             <input type="date" :value="selectedDate" :max="todayStr"
               class="input-field text-center text-lg font-semibold" @change="onDateInput"/>
-            <button class="btn-primary w-full mt-4" @click="showPicker = false">Done</button>
+            <button class="btn-primary w-full mt-4" @click="showPicker = false">{{ t('common.done') }}</button>
           </div>
         </div>
       </Transition>
@@ -46,7 +46,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
         </svg>
         <div>
-          <div class="text-xs text-gray-400">Name</div>
+          <div class="text-xs text-gray-400">{{ t('common.name') }}</div>
           <div class="text-sm font-bold text-gray-800">{{ user?.displayName || '—' }}</div>
         </div>
       </div>
@@ -55,7 +55,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/>
         </svg>
         <div>
-          <div class="text-xs text-gray-400">Centre</div>
+          <div class="text-xs text-gray-400">{{ t('chart.centre') }}</div>
           <div class="text-sm font-bold text-gray-800 truncate">{{ user?.centreName || '—' }}</div>
         </div>
       </div>
@@ -66,15 +66,15 @@
       <div class="flex items-center gap-2 pb-2 border-b border-emerald-100">
         <span class="text-lg">📖</span>
         <span class="text-emerald-700 font-bold text-sm bg-emerald-100 w-6 h-6 rounded-full flex items-center justify-center">1</span>
-        <h2 class="text-emerald-700">Gyan</h2>
+        <h2 class="text-emerald-700">{{ t('chart.gyan') }}</h2>
       </div>
 
       <!-- Murali at Centre -->
       <div class="space-y-2">
         <div class="flex items-center gap-3">
           <div class="flex-1">
-            <div class="font-semibold text-gray-800 text-sm">Murali at Centre / Pathashala</div>
-            <div class="text-xs text-gray-400 mt-0.5">Attend Murali on time and with full attention</div>
+            <div class="font-semibold text-gray-800 text-sm">{{ t('chart.muraliAtCentre') }}</div>
+            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.muraliAtCentreDesc') }}</div>
           </div>
           <div class="flex items-center gap-2 flex-shrink-0">
             <button @click="form.gyanMurali = !form.gyanMurali; form.gyanMuraliStars = form.gyanMurali ? 1 : 0"
@@ -95,11 +95,11 @@
       <!-- Murali Revision -->
       <div class="flex items-center gap-3">
         <div class="flex-1">
-          <div class="font-semibold text-gray-800 text-sm">Murali Revision (at least once)</div>
-          <div class="text-xs text-gray-400 mt-0.5">Revise the Murali during the day</div>
+          <div class="font-semibold text-gray-800 text-sm">{{ t('chart.muraliRevision') }}</div>
+          <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.muraliRevisionDesc') }}</div>
         </div>
         <div class="flex items-center gap-2 flex-shrink-0">
-          <span v-if="form.gyanRevision" class="text-xs font-bold text-emerald-700 bg-white border border-emerald-200 px-2 py-0.5 rounded-lg">5 pts</span>
+          <span v-if="form.gyanRevision" class="text-xs font-bold text-emerald-700 bg-white border border-emerald-200 px-2 py-0.5 rounded-lg">5 {{ t('common.pts') }}</span>
           <button @click="form.gyanRevision = !form.gyanRevision"
             class="relative w-12 h-6 rounded-full transition-colors duration-200"
             :class="form.gyanRevision ? 'bg-emerald-600' : 'bg-gray-200'"
@@ -116,15 +116,15 @@
       <div class="flex items-center gap-2 pb-2 border-b border-blue-100">
         <span class="text-lg">🧘</span>
         <span class="text-blue-700 font-bold text-sm bg-blue-100 w-6 h-6 rounded-full flex items-center justify-center">2</span>
-        <h2 class="text-blue-700">Yog</h2>
+        <h2 class="text-blue-700">{{ t('chart.yog') }}</h2>
       </div>
 
       <!-- Amritvela -->
       <div class="space-y-2">
         <div class="flex items-center gap-3">
           <div class="flex-1">
-            <div class="font-semibold text-gray-800 text-sm">Amritvela</div>
-            <div class="text-xs text-gray-400 mt-0.5">Quality Amritvela Yoga — score by experience</div>
+            <div class="font-semibold text-gray-800 text-sm">{{ t('chart.amritvela') }}</div>
+            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.amritvelaDesc') }}</div>
           </div>
           <button @click="form.yogAmritvela = !form.yogAmritvela; form.yogAmritvelaStars = form.yogAmritvela ? 1 : 0"
             class="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
@@ -136,18 +136,18 @@
         </div>
         <div v-if="form.yogAmritvela" class="flex justify-between items-center pl-1">
           <StarRating v-model="form.yogAmritvelaStars" activeClass="text-blue-500" />
-          <span class="text-xs font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg">{{ form.yogAmritvelaStars * 2 }} / 10 pts</span>
+          <span class="text-xs font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg">{{ form.yogAmritvelaStars * 2 }} / 10 {{ t('common.pts') }}</span>
         </div>
       </div>
 
       <!-- Extra Yoga -->
       <div class="flex items-center gap-3">
         <div class="flex-1">
-          <div class="font-semibold text-gray-800 text-sm">Extra Yoga <span class="text-gray-400 font-normal">(10 pts / hour)</span></div>
-          <div class="text-xs text-gray-400 mt-0.5">Additional yoga beyond Amritvela</div>
+          <div class="font-semibold text-gray-800 text-sm">{{ t('chart.extraYoga') }} <span class="text-gray-400 font-normal">{{ t('chart.extraYogaPts') }}</span></div>
+          <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.extraYogaDesc') }}</div>
         </div>
         <div class="flex items-center gap-2 flex-shrink-0">
-          <span v-if="form.yogExtraHours > 0" class="text-xs font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg">{{ Math.floor(form.yogExtraHours * 10) }} pts</span>
+          <span v-if="form.yogExtraHours > 0" class="text-xs font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg">{{ Math.floor(form.yogExtraHours * 10) }} {{ t('common.pts') }}</span>
           <select v-model="form.yogExtraHours"
             class="text-sm font-semibold text-blue-700 bg-blue-50 border border-blue-100 rounded-xl px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-300"
           >
@@ -160,8 +160,8 @@
       <div class="space-y-2">
         <div class="flex items-center gap-3">
           <div class="flex-1">
-            <div class="font-semibold text-gray-800 text-sm">Traffic Control / Drill</div>
-            <div class="text-xs text-gray-400 mt-0.5">Follow Traffic Control and Yoga drills</div>
+            <div class="font-semibold text-gray-800 text-sm">{{ t('chart.trafficControl') }}</div>
+            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.trafficControlDesc') }}</div>
           </div>
           <button @click="form.yogTrafficControl = !form.yogTrafficControl; form.yogTrafficStars = form.yogTrafficControl ? 1 : 0"
             class="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
@@ -173,7 +173,7 @@
         </div>
         <div v-if="form.yogTrafficControl" class="flex justify-between items-center pl-1">
           <StarRating v-model="form.yogTrafficStars" activeClass="text-blue-500" />
-          <span class="text-xs font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg">{{ form.yogTrafficStars }} / 5 pts</span>
+          <span class="text-xs font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg">{{ form.yogTrafficStars }} / 5 {{ t('common.pts') }}</span>
         </div>
       </div>
     </div>
@@ -183,34 +183,34 @@
       <div class="flex items-center gap-2 pb-2 border-b border-violet-100">
         <span class="text-lg">🎯</span>
         <span class="text-violet-700 font-bold text-sm bg-violet-100 w-6 h-6 rounded-full flex items-center justify-center">3</span>
-        <h2 class="text-violet-700">Dharana <span class="text-gray-400 font-normal text-base">(Sanskar Parivartan)</span></h2>
+        <h2 class="text-violet-700">{{ t('chart.dharana') }} <span class="text-gray-400 font-normal text-base">{{ t('chart.dharanaSubtitle') }}</span></h2>
       </div>
 
       <!-- Aim -->
       <div>
-        <div class="font-semibold text-gray-800 text-sm mb-1.5">Personal Transformation Aim</div>
-        <div class="text-xs text-gray-400 mb-2">Select one goal and practice consistently for 21+ days</div>
+        <div class="font-semibold text-gray-800 text-sm mb-1.5">{{ t('chart.personalAim') }}</div>
+        <div class="text-xs text-gray-400 mb-2">{{ t('chart.personalAimDesc') }}</div>
         <div class="flex gap-2">
           <select v-model="dharanaAimChoice"
             class="flex-1 input-field text-sm py-2.5"
           >
-            <option value="">Select an aim…</option>
-            <option v-for="aim in DHARANA_AIMS" :key="aim" :value="aim">{{ aim }}</option>
+            <option value="">{{ t('chart.selectAim') }}</option>
+            <option v-for="aim in DHARANA_AIMS" :key="aim" :value="aim">{{ aimLabel(aim) }}</option>
           </select>
         </div>
         <input v-if="dharanaAimChoice === 'Other…'" v-model="customAim" type="text"
-          placeholder="Describe your aim…" maxlength="500"
+          :placeholder="t('chart.describeAim')" maxlength="500"
           class="input-field text-sm mt-2" />
       </div>
 
       <!-- Morning Pledge -->
       <div class="flex items-center gap-3">
         <div class="flex-1">
-          <div class="font-semibold text-gray-800 text-sm">Morning Affirmation / Pledge in front of Baba</div>
-          <div class="text-xs text-gray-400 mt-0.5">Begin the day with a positive affirmation</div>
+          <div class="font-semibold text-gray-800 text-sm">{{ t('chart.morningPledge') }}</div>
+          <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.morningPledgeDesc') }}</div>
         </div>
         <div class="flex items-center gap-2 flex-shrink-0">
-          <span v-if="form.dharanaMorningPledge" class="text-xs font-bold text-violet-700 bg-white border border-violet-200 px-2 py-0.5 rounded-lg">5 pts</span>
+          <span v-if="form.dharanaMorningPledge" class="text-xs font-bold text-violet-700 bg-white border border-violet-200 px-2 py-0.5 rounded-lg">5 {{ t('common.pts') }}</span>
           <button @click="form.dharanaMorningPledge = !form.dharanaMorningPledge"
             class="relative w-12 h-6 rounded-full transition-colors duration-200"
             :class="form.dharanaMorningPledge ? 'bg-violet-600' : 'bg-gray-200'"
@@ -225,8 +225,8 @@
       <div class="space-y-2">
         <div class="flex items-center gap-3">
           <div class="flex-1">
-            <div class="font-semibold text-gray-800 text-sm">Night Self-check</div>
-            <div class="text-xs text-gray-400 mt-0.5">Review your progress on the aim before sleeping</div>
+            <div class="font-semibold text-gray-800 text-sm">{{ t('chart.nightCheck') }}</div>
+            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.nightCheckDesc') }}</div>
           </div>
           <button @click="form.dharanaNightCheck = !form.dharanaNightCheck; form.dharanaNightStars = form.dharanaNightCheck ? 1 : 0"
             class="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
@@ -238,7 +238,7 @@
         </div>
         <div v-if="form.dharanaNightCheck" class="flex justify-between items-center pl-1">
           <StarRating v-model="form.dharanaNightStars" activeClass="text-violet-500" />
-          <span class="text-xs font-bold text-violet-700 bg-white border border-violet-200 px-2 py-0.5 rounded-lg">{{ form.dharanaNightStars }} / 5 pts</span>
+          <span class="text-xs font-bold text-violet-700 bg-white border border-violet-200 px-2 py-0.5 rounded-lg">{{ form.dharanaNightStars }} / 5 {{ t('common.pts') }}</span>
         </div>
       </div>
     </div>
@@ -248,14 +248,14 @@
       <div class="flex items-center gap-2 pb-2 border-b border-orange-100">
         <span class="text-lg">🤝</span>
         <span class="text-orange-700 font-bold text-sm bg-orange-100 w-6 h-6 rounded-full flex items-center justify-center">4</span>
-        <h2 class="text-orange-700">Seva</h2>
+        <h2 class="text-orange-700">{{ t('chart.seva') }}</h2>
       </div>
 
       <div class="space-y-2">
         <div class="flex items-center gap-3">
           <div class="flex-1">
-            <div class="font-semibold text-gray-800 text-sm">Minimum 30 Minutes of Seva</div>
-            <div class="text-xs text-gray-400 mt-0.5">Meaningful Baba's Seva through thoughts, words, or actions</div>
+            <div class="font-semibold text-gray-800 text-sm">{{ t('chart.sevaMin') }}</div>
+            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.sevaMinDesc') }}</div>
           </div>
           <button @click="form.sevaDone = !form.sevaDone; form.sevaStars = form.sevaDone ? 1 : 0"
             class="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
@@ -267,15 +267,15 @@
         </div>
         <div v-if="form.sevaDone" class="flex justify-between items-center pl-1">
           <StarRating v-model="form.sevaStars" activeClass="text-orange-500" />
-          <span class="text-xs font-bold text-orange-700 bg-white border border-orange-200 px-2 py-0.5 rounded-lg">{{ form.sevaStars }} / 5 pts</span>
+          <span class="text-xs font-bold text-orange-700 bg-white border border-orange-200 px-2 py-0.5 rounded-lg">{{ form.sevaStars }} / 5 {{ t('common.pts') }}</span>
         </div>
       </div>
     </div>
 
     <!-- ── Remarks ─────────────────────────────────────────────────────── -->
     <div class="card">
-      <h2 class="mb-1">Remarks <span class="text-gray-400 font-normal text-base">· optional</span></h2>
-      <textarea v-model="form.remarks" placeholder="Any insights or experiences from today…"
+      <h2 class="mb-1">{{ t('chart.remarks') }} <span class="text-gray-400 font-normal text-base">· {{ t('common.optional') }}</span></h2>
+      <textarea v-model="form.remarks" :placeholder="t('chart.remarksPlaceholder')"
         class="input-field resize-none mt-2" rows="2" />
     </div>
 
@@ -283,22 +283,22 @@
     <div class="card bg-gradient-to-r from-primary-600 to-indigo-600 border-0">
       <div class="flex items-center justify-between text-white">
         <div>
-          <div class="text-sm font-medium opacity-80">Total Points Today</div>
+          <div class="text-sm font-medium opacity-80">{{ t('chart.totalPointsToday') }}</div>
           <div class="text-4xl font-extrabold">{{ currentPoints }}</div>
-          <div class="text-xs opacity-70 mt-0.5">out of {{ MAX_BASE_POINTS }} base points</div>
+          <div class="text-xs opacity-70 mt-0.5">{{ t('chart.outOfBasePoints', { max: MAX_BASE_POINTS }) }}</div>
         </div>
         <div class="text-right">
-          <div v-if="currentPoints === MAX_BASE_POINTS" class="text-amber-300 font-bold text-sm mb-1">🌟 Perfect Day!</div>
-          <div v-else-if="currentPoints >= MAX_BASE_POINTS * 0.8" class="text-amber-300 font-bold text-sm mb-1">Excellent Effort!</div>
-          <div v-else-if="currentPoints >= MAX_BASE_POINTS * 0.5" class="text-white/80 font-semibold text-sm mb-1">Good Progress</div>
+          <div v-if="currentPoints === MAX_BASE_POINTS" class="text-amber-300 font-bold text-sm mb-1">{{ t('chart.perfectDay') }}</div>
+          <div v-else-if="currentPoints >= MAX_BASE_POINTS * 0.8" class="text-amber-300 font-bold text-sm mb-1">{{ t('chart.excellentEffort') }}</div>
+          <div v-else-if="currentPoints >= MAX_BASE_POINTS * 0.5" class="text-white/80 font-semibold text-sm mb-1">{{ t('chart.goodProgress') }}</div>
         </div>
       </div>
     </div>
 
     <div>
       <button @click="save" :disabled="saving" class="btn-primary w-full text-base py-4">
-        <span v-if="saving">Saving…</span>
-        <span v-else>Save Today's Entry</span>
+        <span v-if="saving">{{ t('common.saving') }}</span>
+        <span v-else>{{ t('chart.saveEntry') }}</span>
       </button>
     </div>
 
@@ -322,6 +322,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed, watch, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '@/stores/auth'
 import { useChecklistStore } from '@/stores/checklist'
 import { calcPoints } from '@/services/mockData'
@@ -339,15 +340,32 @@ const DHARANA_AIMS = [
   'Making Excuses for Mistake', 'I Am Always Right" Attitude', 'Other…',
 ]
 
-const extraHourOptions = [
-  { label: '0 hours', value: 0 },
-  { label: '0.5 hr',  value: 0.5 },
-  { label: '1 hour',  value: 1 },
-  { label: '1.5 hr',  value: 1.5 },
-  { label: '2 hours', value: 2 },
-  { label: '3 hours', value: 3 },
-  { label: '4 hours', value: 4 },
-]
+// Stored aim values stay in English for backward-compatible saved entries;
+// only the displayed label is localized.
+const AIM_KEY_MAP: Record<string, string> = {
+  'Win Over Anger': 'winOverAnger',
+  'Control on Mobile Usage': 'controlMobile',
+  'Procrastination (Postponing Things)': 'procrastination',
+  'Comparing and Competing with Others': 'comparing',
+  'Seeing Weaknesses in Others (Paradarshan)': 'seeingWeaknesses',
+  'Lack of Punctuality in Daily Routine': 'punctuality',
+  'Making Excuses for Mistake': 'excuses',
+  'I Am Always Right" Attitude': 'alwaysRight',
+  'Other…': 'other',
+}
+
+const { t } = useI18n()
+const aimLabel = (aim: string) => t(`chart.aims.${AIM_KEY_MAP[aim] ?? 'other'}`)
+
+const extraHourOptions = computed(() => [
+  { label: `0 ${t('common.hours')}`,   value: 0 },
+  { label: '0.5 hr',                   value: 0.5 },
+  { label: `1 ${t('common.hours')}`,   value: 1 },
+  { label: '1.5 hr',                   value: 1.5 },
+  { label: `2 ${t('common.hours')}`,   value: 2 },
+  { label: `3 ${t('common.hours')}`,   value: 3 },
+  { label: `4 ${t('common.hours')}`,   value: 4 },
+])
 
 const auth  = useAuthStore()
 const store = useChecklistStore()
@@ -453,7 +471,7 @@ const save = async () => {
   try {
     const pts = await store.saveEntry({ date: selectedDate.value, ...form })
     if (toastTimer) clearTimeout(toastTimer)
-    toastMsg.value = `${pts} points saved!`
+    toastMsg.value = t('chart.pointsSaved', { points: pts })
     toastTimer = setTimeout(() => { toastMsg.value = '' }, 3000)
   } finally {
     saving.value = false

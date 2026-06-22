@@ -40,16 +40,19 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 const router   = useRouter()
 const route    = useRoute()
+const { t }    = useI18n()
 const isActive = (path: string) => route.path === path
 
-const tabs = [
-  { path: '/home',      label: 'Home',      icon: 'home'      },
-  { path: '/chart',     label: 'Chart',     icon: 'chart'     },
-  { path: '/resources', label: 'Resources', icon: 'resources' },
-  { path: '/profile',   label: 'Profile',   icon: 'profile'   },
-]
+const tabs = computed(() => [
+  { path: '/home',      label: t('nav.home'),      icon: 'home'      },
+  { path: '/chart',     label: t('nav.chart'),     icon: 'chart'     },
+  { path: '/resources', label: t('nav.resources'), icon: 'resources' },
+  { path: '/profile',   label: t('nav.profile'),   icon: 'profile'   },
+])
 </script>

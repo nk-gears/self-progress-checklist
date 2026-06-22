@@ -5,8 +5,8 @@
     <div class="card bg-gradient-to-br from-primary-700 to-indigo-600 border-0 text-white">
       <div class="text-center py-2">
         <div class="text-3xl mb-1">🌟</div>
-        <h1 class="text-xl font-extrabold tracking-tight">Self Progress Chart</h1>
-        <p class="text-primary-200 text-sm mt-0.5">Step towards Sampoornatha</p>
+        <h1 class="text-xl font-extrabold tracking-tight">{{ t('home.heroTitle') }}</h1>
+        <p class="text-primary-200 text-sm mt-0.5">{{ t('home.heroSubtitle') }}</p>
       </div>
     </div>
 
@@ -17,21 +17,21 @@
           <svg class="w-6 h-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
           </svg>
-          <span class="text-xs text-gray-400 font-medium">Name</span>
+          <span class="text-xs text-gray-400 font-medium">{{ t('common.name') }}</span>
           <span class="font-bold text-gray-800 text-sm text-center">{{ user?.displayName || '—' }}</span>
         </div>
         <div class="flex-1 flex flex-col items-center gap-1 px-2 py-1">
           <svg class="w-6 h-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
-          <span class="text-xs text-gray-400 font-medium">Centre / Pathashala</span>
+          <span class="text-xs text-gray-400 font-medium">{{ t('common.centre') }}</span>
           <span class="font-bold text-gray-800 text-sm text-center">{{ user?.centreName || '—' }}</span>
         </div>
         <div class="flex-1 flex flex-col items-center gap-1 px-2 py-1">
           <svg class="w-6 h-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
           </svg>
-          <span class="text-xs text-gray-400 font-medium">Date</span>
+          <span class="text-xs text-gray-400 font-medium">{{ t('common.date') }}</span>
           <span class="font-bold text-gray-800 text-sm">{{ todayFormatted }}</span>
         </div>
       </div>
@@ -43,11 +43,11 @@
       <button class="card flex items-center gap-4 w-full text-left" @click="showTargetPicker = true">
         <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center text-xl flex-shrink-0">🎯</div>
         <div class="flex-1">
-          <div class="font-semibold text-gray-700">Yoga Target</div>
-          <div class="text-xs text-gray-400">Tap to change your target level</div>
+          <div class="font-semibold text-gray-700">{{ t('home.yogaTarget') }}</div>
+          <div class="text-xs text-gray-400">{{ t('home.tapToChangeTarget') }}</div>
         </div>
         <div class="flex items-center gap-1 text-2xl font-extrabold text-primary-700">
-          {{ selectedYogaTarget.hours }} {{ selectedYogaTarget.label }}
+          {{ selectedYogaTarget.hours }} {{ t(`home.targetLabels.${selectedYogaTarget.key}`) }}
           <span class="text-primary-400 text-base">▼</span>
         </div>
       </button>
@@ -57,20 +57,20 @@
         <Transition name="sheet">
           <div v-if="showTargetPicker" class="fixed inset-0 bg-black/50 z-50 flex items-end" @click.self="showTargetPicker = false">
             <div class="bg-white w-full rounded-t-3xl p-6 safe-area-bottom max-w-lg mx-auto">
-              <h3 class="font-bold text-gray-800 mb-4">Choose Yoga target</h3>
+              <h3 class="font-bold text-gray-800 mb-4">{{ t('home.chooseYogaTarget') }}</h3>
               <div class="space-y-2 max-h-[60vh] overflow-y-auto">
                 <button
-                  v-for="t in yogaTargets"
-                  :key="t.hours"
-                  @click="selectYogaTarget(t.hours)"
+                  v-for="tgt in yogaTargets"
+                  :key="tgt.hours"
+                  @click="selectYogaTarget(tgt.hours)"
                   class="w-full flex items-center justify-between px-4 py-3 rounded-xl border"
-                  :class="t.hours === yogaTargetHours ? 'border-primary-400 bg-primary-50' : 'border-gray-100'"
+                  :class="tgt.hours === yogaTargetHours ? 'border-primary-400 bg-primary-50' : 'border-gray-100'"
                 >
-                  <span class="font-semibold text-gray-700">{{ t.label }}</span>
-                  <span class="text-sm text-gray-400">{{ t.hours }} hours</span>
+                  <span class="font-semibold text-gray-700">{{ t(`home.targetLabels.${tgt.key}`) }}</span>
+                  <span class="text-sm text-gray-400">{{ tgt.hours }} {{ t('common.hours') }}</span>
                 </button>
               </div>
-              <button class="btn-primary w-full mt-4" @click="showTargetPicker = false">Done</button>
+              <button class="btn-primary w-full mt-4" @click="showTargetPicker = false">{{ t('common.done') }}</button>
             </div>
           </div>
         </Transition>
@@ -80,8 +80,8 @@
       <div class="card flex items-center gap-4">
         <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center text-xl flex-shrink-0">🏳️</div>
         <div class="flex-1">
-          <div class="font-semibold text-gray-700">Yoga Achieved</div>
-          <div class="text-xs text-gray-400">Total yoga hours practiced so far</div>
+          <div class="font-semibold text-gray-700">{{ t('home.yogaAchieved') }}</div>
+          <div class="text-xs text-gray-400">{{ t('home.totalYogaHoursPracticed') }}</div>
         </div>
         <div class="text-2xl font-extrabold text-primary-700">{{ stats.totalYogaHours }}</div>
       </div>
@@ -90,8 +90,8 @@
       <div class="card flex items-center gap-4">
         <div class="w-11 h-11 rounded-xl bg-amber-100 flex items-center justify-center text-xl flex-shrink-0">⭐</div>
         <div class="flex-1">
-          <div class="font-semibold text-gray-700">Total Points</div>
-          <div class="text-xs text-gray-400">Cumulative across all days</div>
+          <div class="font-semibold text-gray-700">{{ t('home.totalPoints') }}</div>
+          <div class="text-xs text-gray-400">{{ t('home.cumulativeAcrossDays') }}</div>
         </div>
         <div class="text-2xl font-extrabold text-amber-600">
           {{ stats.totalPoints }} <span class="text-base font-bold">({{ targetPercent }}%)</span>
@@ -102,8 +102,8 @@
       <div class="card flex items-center gap-4">
         <div class="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center text-xl flex-shrink-0">🔥</div>
         <div class="flex-1">
-          <div class="font-semibold text-gray-700">Current Streak</div>
-          <div class="text-xs text-gray-400">Consecutive days</div>
+          <div class="font-semibold text-gray-700">{{ t('home.currentStreak') }}</div>
+          <div class="text-xs text-gray-400">{{ t('home.consecutiveDays') }}</div>
         </div>
         <div class="text-2xl font-extrabold text-orange-600">{{ stats.currentStreak }}</div>
       </div>
@@ -112,17 +112,17 @@
     <!-- ── Progress chart ─────────────────────────────────────────────────── -->
     <div class="card overflow-hidden">
       <div class="flex items-center justify-between mb-3">
-        <h2>Your Progress</h2>
+        <h2>{{ t('home.yourProgress') }}</h2>
         <!-- Category filter -->
         <select
           v-model="selectedCategory"
           class="text-xs font-semibold text-primary-700 bg-primary-50 border-0 rounded-xl px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary-300"
         >
-          <option value="total">Total</option>
-          <option value="gyan">Gyan</option>
-          <option value="yog">Yog</option>
-          <option value="dharana">Dharana</option>
-          <option value="seva">Seva</option>
+          <option value="total">{{ t('home.categoryTotal') }}</option>
+          <option value="gyan">{{ t('home.categoryGyan') }}</option>
+          <option value="yog">{{ t('home.categoryYog') }}</option>
+          <option value="dharana">{{ t('home.categoryDharana') }}</option>
+          <option value="seva">{{ t('home.categorySeva') }}</option>
         </select>
       </div>
 
@@ -139,7 +139,7 @@
 
       <div v-if="chartData.length === 0" class="text-center py-10 text-gray-300">
         <div class="text-5xl mb-2">🌟</div>
-        <p class="text-sm">No entries yet — start your daily practice!</p>
+        <p class="text-sm">{{ t('home.noEntriesYet') }}</p>
       </div>
 
       <div v-else class="overflow-x-auto -mx-4 px-4">
@@ -171,14 +171,14 @@
     <!-- ── Today's summary ────────────────────────────────────────────────── -->
     <div class="card">
       <div class="flex items-center justify-between mb-3">
-        <h2>Today's Check-in</h2>
+        <h2>{{ t('home.todaysCheckin') }}</h2>
         <button @click="router.push('/chart')" class="text-sm font-semibold text-primary-600">
-          {{ todayEntry ? 'Edit →' : 'Fill in →' }}
+          {{ todayEntry ? t('home.edit') : t('home.fillIn') }}
         </button>
       </div>
       <div v-if="todayEntry">
         <div class="flex items-center justify-between py-2 border-b border-primary-50">
-          <span class="text-sm font-medium text-gray-600">Points Today</span>
+          <span class="text-sm font-medium text-gray-600">{{ t('home.pointsToday') }}</span>
           <span class="font-extrabold text-primary-700 text-lg">{{ todayEntry.totalPoints }}</span>
         </div>
         <div class="grid grid-cols-2 gap-3 mt-3">
@@ -186,15 +186,15 @@
             <span class="text-base">{{ cat.icon }}</span>
             <div>
               <div class="text-xs text-gray-400 font-medium">{{ cat.label }}</div>
-              <div class="text-sm font-bold text-primary-700">{{ cat.pts }} pts</div>
+              <div class="text-sm font-bold text-primary-700">{{ cat.pts }} {{ t('common.pts') }}</div>
             </div>
           </div>
         </div>
       </div>
       <div v-else class="text-center py-6 text-gray-400">
         <div class="text-4xl mb-2">📋</div>
-        <p class="text-sm">No entry for today yet</p>
-        <button @click="router.push('/chart')" class="mt-3 btn-primary text-sm py-2.5 px-6">Start Daily Check-in</button>
+        <p class="text-sm">{{ t('home.noEntryToday') }}</p>
+        <button @click="router.push('/chart')" class="mt-3 btn-primary text-sm py-2.5 px-6">{{ t('home.startCheckin') }}</button>
       </div>
     </div>
 
@@ -203,7 +203,7 @@
 
     <!-- ── Footer ──────────────────────────────────────────────────────────── -->
     <footer class="text-center text-xs text-gray-400 pt-2 pb-4">
-      <p>Designed &amp; Developed by Brahma Kumaris - Chennai.&nbsp;&nbsp;Copyrights {{ currentYear }}</p>
+      <p>{{ t('home.footerCredit') }}&nbsp;&nbsp;{{ t('home.footerCopyright', { year: currentYear }) }}</p>
       <p class="mt-1">
         <a href="https://www.brahmakumaris.com" target="_blank" rel="noopener" class="text-primary-500 font-medium">brahmakumaris.com</a>
       </p>
@@ -214,11 +214,13 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '@/stores/auth'
 import { useChecklistStore } from '@/stores/checklist'
 import FeedbackButton from '@/components/FeedbackButton.vue'
 import type { ChartFilter, ChartCategory } from '@/types'
 
+const { t }     = useI18n()
 const router    = useRouter()
 const auth      = useAuthStore()
 const store     = useChecklistStore()
@@ -233,20 +235,20 @@ const todayFormatted = new Date().toLocaleDateString('en-IN', { day: '2-digit', 
 
 const YOGA_TARGET_KEY = 'spc_yoga_target_hours'
 const yogaTargets = [
-  { label: 'Starter',  hours: 108 },
-  { label: 'Regular',  hours: 208 },
-  { label: 'Bronze',   hours: 308 },
-  { label: 'Silver',   hours: 408 },
-  { label: 'Gold',     hours: 508 },
-  { label: 'Diamond',  hours: 708 },
-  { label: 'Platinum', hours: 1008 },
+  { key: 'starter',  hours: 108 },
+  { key: 'regular',  hours: 208 },
+  { key: 'bronze',   hours: 308 },
+  { key: 'silver',   hours: 408 },
+  { key: 'gold',     hours: 508 },
+  { key: 'diamond',  hours: 708 },
+  { key: 'platinum', hours: 1008 },
 ]
 
 const showTargetPicker = ref(false)
 const yogaTargetHours  = ref(Number(localStorage.getItem(YOGA_TARGET_KEY)) || yogaTargets[4].hours)
 
 const selectedYogaTarget = computed(() =>
-  yogaTargets.find(t => t.hours === yogaTargetHours.value) ?? yogaTargets[4]
+  yogaTargets.find(tgt => tgt.hours === yogaTargetHours.value) ?? yogaTargets[4]
 )
 
 function selectYogaTarget(hours: number) {
@@ -273,21 +275,21 @@ const todayCats = computed(() => {
   const dhar = (e.dharanaMorningPledge ? 5 : 0) + (e.dharanaNightCheck ? e.dharanaNightStars : 0)
   const seva = e.sevaDone ? e.sevaStars : 0
   return [
-    { label: 'Gyan',    icon: '📖', pts: gyan },
-    { label: 'Yog',     icon: '🧘', pts: yog  },
-    { label: 'Dharana', icon: '⭐', pts: dhar  },
-    { label: 'Seva',    icon: '🤝', pts: seva  },
+    { label: t('home.categoryGyan'),    icon: '📖', pts: gyan },
+    { label: t('home.categoryYog'),     icon: '🧘', pts: yog  },
+    { label: t('home.categoryDharana'), icon: '⭐', pts: dhar  },
+    { label: t('home.categorySeva'),    icon: '🤝', pts: seva  },
   ]
 })
 
 // ── Chart ─────────────────────────────────────────────────────────────────────
 
-const filters = [
-  { label: '7D',    value: '7d'    as ChartFilter },
-  { label: '30D',   value: '30d'   as ChartFilter },
-  { label: 'Month', value: 'month' as ChartFilter },
-  { label: 'All',   value: 'all'   as ChartFilter },
-]
+const filters = computed(() => [
+  { label: t('home.period7d'),    value: '7d'    as ChartFilter },
+  { label: t('home.period30d'),   value: '30d'   as ChartFilter },
+  { label: t('home.periodMonth'), value: 'month' as ChartFilter },
+  { label: t('home.periodAll'),   value: 'all'   as ChartFilter },
+])
 const activeFilter     = ref<ChartFilter>('7d')
 const selectedCategory = ref<ChartCategory>('total')
 

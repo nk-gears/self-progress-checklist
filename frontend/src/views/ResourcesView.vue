@@ -3,12 +3,12 @@
 
     <div class="card text-center py-4">
       <div class="text-3xl mb-1">📚</div>
-      <h1 class="text-xl font-extrabold text-primary-800">Resources</h1>
-      <p class="text-sm text-gray-400 mt-0.5">Useful links for your spiritual journey</p>
+      <h1 class="text-xl font-extrabold text-primary-800">{{ t('resources.title') }}</h1>
+      <p class="text-sm text-gray-400 mt-0.5">{{ t('resources.subtitle') }}</p>
     </div>
 
-    <div v-for="section in sections" :key="section.title" class="card space-y-1">
-      <h2 class="mb-3">{{ section.title }}</h2>
+    <div v-for="section in sections" :key="section.titleKey" class="card space-y-1">
+      <h2 class="mb-3">{{ t(`resources.${section.titleKey}`) }}</h2>
       <a
         v-for="link in section.links"
         :key="link.url"
@@ -35,9 +35,13 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 const sections = [
   {
-    title: 'BK Websites',
+    titleKey: 'bkWebsites',
     links: [
       { icon: '🌐', label: 'BK Official Website', url: 'https://www.brahmakumaris.com', description: 'Brahma Kumaris World Spiritual University' },
       { icon: '📺', label: 'BK YouTube Channel', url: 'https://www.youtube.com/@BrahmaKumaris', description: 'Spiritual knowledge and meditation videos' },
@@ -45,7 +49,7 @@ const sections = [
     ],
   },
   {
-    title: 'Meditation & Study',
+    titleKey: 'meditationStudy',
     links: [
       { icon: '🧘', label: 'Online Meditation', url: 'https://www.brahmakumaris.com/meditation', description: 'Guided meditation resources' },
       { icon: '📖', label: 'Spiritual Study', url: 'https://www.bkwsu.org', description: 'BK World Spiritual University resources' },
@@ -53,7 +57,7 @@ const sections = [
     ],
   },
   {
-    title: 'Self-Transformation',
+    titleKey: 'selfTransformation',
     links: [
       { icon: '⭐', label: 'Soul Sustenance', url: 'https://www.soulsustenance.com', description: 'Daily spiritual food for the soul' },
       { icon: '🎵', label: 'BK Music', url: 'https://www.youtube.com/@bkshivani', description: 'Spiritual music and bhajans' },

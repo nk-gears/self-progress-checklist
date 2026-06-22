@@ -6,12 +6,12 @@
     >
       <div class="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center text-2xl flex-shrink-0">🌟</div>
       <div class="flex-1 min-w-0">
-        <p class="font-bold text-gray-800 text-sm">Add to Home Screen</p>
-        <p class="text-gray-500 text-xs mt-0.5 leading-snug">Install for a native app experience</p>
+        <p class="font-bold text-gray-800 text-sm">{{ t('pwa.addToHomeScreen') }}</p>
+        <p class="text-gray-500 text-xs mt-0.5 leading-snug">{{ t('pwa.installPrompt') }}</p>
       </div>
       <div class="flex flex-col gap-2">
-        <button @click="install" class="px-3 py-1.5 bg-primary-600 text-white rounded-lg text-xs font-semibold active:scale-95 transition-transform">Install</button>
-        <button @click="dismiss" class="px-3 py-1.5 text-gray-400 rounded-lg text-xs font-medium active:scale-95 transition-transform">Not now</button>
+        <button @click="install" class="px-3 py-1.5 bg-primary-600 text-white rounded-lg text-xs font-semibold active:scale-95 transition-transform">{{ t('pwa.install') }}</button>
+        <button @click="dismiss" class="px-3 py-1.5 text-gray-400 rounded-lg text-xs font-medium active:scale-95 transition-transform">{{ t('pwa.notNow') }}</button>
       </div>
     </div>
   </Transition>
@@ -19,6 +19,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const show = ref(false)
 let deferredPrompt: any = null
