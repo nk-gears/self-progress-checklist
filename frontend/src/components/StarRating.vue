@@ -6,7 +6,7 @@
       @click.stop="emit('update:modelValue', modelValue === n ? 0 : n)"
       :disabled="disabled"
       class="text-xl transition-all active:scale-90 disabled:cursor-default"
-      :class="n <= modelValue ? activeClass : 'text-gray-200'"
+      :class="n <= modelValue ? activeClass : 'text-gray-400'"
     >
       ★
     </button>

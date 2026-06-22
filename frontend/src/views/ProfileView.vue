@@ -2,10 +2,29 @@
   <div class="p-4 space-y-4 max-w-lg mx-auto pb-8">
 
     <!-- ── Avatar + name ─────────────────────────────────────────────────── -->
-    <div class="card flex flex-col items-center py-8 gap-2">
-      <div class="w-24 h-24 rounded-full bg-primary-100 flex items-center justify-center text-5xl shadow-md mb-2">🌟</div>
+    <div class="card flex flex-col items-center py-8 gap-2 relative" :class="profileBg">
+      <button @click="showBgPicker = !showBgPicker"
+        class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow-sm">
+        <span class="text-sm">🎨</span>
+      </button>
+      <div v-if="showBgPicker" class="absolute top-12 right-3 bg-white rounded-xl shadow-lg p-2 flex gap-2 z-10">
+        <button v-for="c in bgColors" :key="c.value" @click="selectBg(c.value)"
+          class="w-6 h-6 rounded-full border-2"
+          :class="[c.swatch, profileBg === c.value ? 'border-primary-600' : 'border-white']"
+        />
+      </div>
+      <div class="w-24 h-24 rounded-full bg-primary-100 flex items-center justify-center text-3xl shadow-md mb-2">🔆🔅</div>
       <h2 class="font-extrabold text-gray-800 text-2xl leading-tight">{{ user?.displayName || t('profile.bkMember') }}</h2>
-      <p class="text-gray-400 text-sm">{{ t('profile.studentOfBaba') }}</p>
+
+      <input v-if="editingTagline" ref="taglineInput" v-model="taglineDraft"
+        class="text-gray-600 text-base text-center border-b border-primary-300 focus:outline-none bg-transparent px-1"
+        maxlength="80" @keyup.enter="saveTagline" @blur="saveTagline" />
+      <button v-else @click="startEditTagline" class="text-gray-600 text-base flex items-center gap-1.5">
+        {{ tagline }}
+        <svg class="w-3.5 h-3.5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+        </svg>
+      </button>
     </div>
 
     <!-- ── Language ──────────────────────────────────────────────────────── -->
@@ -155,6 +174,52 @@ const user    = computed(() => auth.user)
 const stats   = computed(() => store.stats)
 
 const joinedDate = computed(() => new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }))
+
+// ── Avatar card background (editable, stored locally) ───────────────────────
+
+const BG_KEY = 'spc_profile_card_bg'
+const bgColors = [
+  { value: 'bg-white',       swatch: 'bg-gray-100'    },
+  { value: 'bg-primary-50',  swatch: 'bg-primary-200' },
+  { value: 'bg-rose-50',     swatch: 'bg-rose-200'    },
+  { value: 'bg-amber-50',    swatch: 'bg-amber-200'   },
+  { value: 'bg-emerald-50',  swatch: 'bg-emerald-200' },
+  { value: 'bg-sky-50',      swatch: 'bg-sky-200'     },
+  { value: 'bg-violet-50',   swatch: 'bg-violet-200'  },
+]
+const profileBg   = ref(localStorage.getItem(BG_KEY) || 'bg-white')
+const showBgPicker = ref(false)
+
+const selectBg = (value: string) => {
+  profileBg.value = value
+  localStorage.setItem(BG_KEY, value)
+  showBgPicker.value = false
+}
+
+// ── Tagline (editable, stored locally) ───────────────────────────────────────
+
+const TAGLINE_KEY = 'spc_profile_tagline'
+const customTagline  = ref(localStorage.getItem(TAGLINE_KEY) || '')
+const tagline = computed(() => customTagline.value || t('profile.studentOfBaba'))
+
+const editingTagline = ref(false)
+const taglineDraft   = ref('')
+const taglineInput   = ref<HTMLInputElement | null>(null)
+
+const startEditTagline = async () => {
+  taglineDraft.value   = tagline.value
+  editingTagline.value = true
+  await nextTick()
+  taglineInput.value?.focus()
+}
+
+const saveTagline = () => {
+  editingTagline.value = false
+  const val = taglineDraft.value.trim()
+  customTagline.value = val
+  if (val) localStorage.setItem(TAGLINE_KEY, val)
+  else localStorage.removeItem(TAGLINE_KEY)
+}
 
 // ── Edit ──────────────────────────────────────────────────────────────────────
 

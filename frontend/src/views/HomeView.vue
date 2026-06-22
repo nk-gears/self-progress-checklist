@@ -4,7 +4,9 @@
     <!-- ── Hero header ────────────────────────────────────────────────────── -->
     <div class="card bg-gradient-to-br from-primary-700 to-indigo-600 border-0 text-white">
       <div class="text-center py-2">
-        <div class="text-3xl mb-1">🌟</div>
+        <div class="w-14 h-14 mx-auto mb-1.5 rounded-full bg-white shadow-md flex items-center justify-center">
+          <img src="/supreme.png" class="w-11 h-11" alt="" />
+        </div>
         <h1 class="text-xl font-extrabold tracking-tight">{{ t('home.heroTitle') }}</h1>
         <p class="text-primary-200 text-sm mt-0.5">{{ t('home.heroSubtitle') }}</p>
       </div>
@@ -17,21 +19,21 @@
           <svg class="w-6 h-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
           </svg>
-          <span class="text-xs text-gray-400 font-medium">{{ t('common.name') }}</span>
+          <span class="text-xs text-gray-600 font-semibold">{{ t('common.name') }}</span>
           <span class="font-bold text-gray-800 text-sm text-center">{{ user?.displayName || '—' }}</span>
         </div>
         <div class="flex-1 flex flex-col items-center gap-1 px-2 py-1">
           <svg class="w-6 h-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
-          <span class="text-xs text-gray-400 font-medium">{{ t('common.centre') }}</span>
+          <span class="text-xs text-gray-600 font-semibold">{{ t('common.centre') }}</span>
           <span class="font-bold text-gray-800 text-sm text-center">{{ user?.centreName || '—' }}</span>
         </div>
         <div class="flex-1 flex flex-col items-center gap-1 px-2 py-1">
           <svg class="w-6 h-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
           </svg>
-          <span class="text-xs text-gray-400 font-medium">{{ t('common.date') }}</span>
+          <span class="text-xs text-gray-600 font-semibold">{{ t('common.date') }}</span>
           <span class="font-bold text-gray-800 text-sm">{{ todayFormatted }}</span>
         </div>
       </div>
@@ -44,9 +46,9 @@
         <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center text-xl flex-shrink-0">🎯</div>
         <div class="flex-1">
           <div class="font-semibold text-gray-700">{{ t('home.yogaTarget') }}</div>
-          <div class="text-xs text-gray-400">{{ t('home.tapToChangeTarget') }}</div>
+          <div class="text-sm text-gray-600">{{ t('home.tapToChangeTarget') }}</div>
         </div>
-        <div class="flex items-center gap-1 text-2xl font-extrabold text-primary-700">
+        <div class="flex items-center gap-1 font-extrabold text-primary-700" style="font-size: 19px">
           {{ selectedYogaTarget.hours }} {{ t(`home.targetLabels.${selectedYogaTarget.key}`) }}
           <span class="text-primary-400 text-base">▼</span>
         </div>
@@ -76,12 +78,12 @@
         </Transition>
       </Teleport>
 
-      <!-- Yoga Achieved -->
+      <!-- Yoga Total Hours -->
       <div class="card flex items-center gap-4">
         <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center text-xl flex-shrink-0">🏳️</div>
         <div class="flex-1">
           <div class="font-semibold text-gray-700">{{ t('home.yogaAchieved') }}</div>
-          <div class="text-xs text-gray-400">{{ t('home.totalYogaHoursPracticed') }}</div>
+          <div class="text-sm text-gray-600">{{ t('home.totalYogaHoursPracticed') }}</div>
         </div>
         <div class="text-2xl font-extrabold text-primary-700">{{ stats.totalYogaHours }}</div>
       </div>
@@ -91,7 +93,7 @@
         <div class="w-11 h-11 rounded-xl bg-amber-100 flex items-center justify-center text-xl flex-shrink-0">⭐</div>
         <div class="flex-1">
           <div class="font-semibold text-gray-700">{{ t('home.totalPoints') }}</div>
-          <div class="text-xs text-gray-400">{{ t('home.cumulativeAcrossDays') }}</div>
+          <div class="text-sm text-gray-600">{{ t('home.cumulativeAcrossDays') }}</div>
         </div>
         <div class="text-2xl font-extrabold text-amber-600">
           {{ stats.totalPoints }} <span class="text-base font-bold">({{ targetPercent }}%)</span>
@@ -103,7 +105,7 @@
         <div class="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center text-xl flex-shrink-0">🔥</div>
         <div class="flex-1">
           <div class="font-semibold text-gray-700">{{ t('home.currentStreak') }}</div>
-          <div class="text-xs text-gray-400">{{ t('home.consecutiveDays') }}</div>
+          <div class="text-sm text-gray-600">{{ t('home.consecutiveDays') }}</div>
         </div>
         <div class="text-2xl font-extrabold text-orange-600">{{ stats.currentStreak }}</div>
       </div>
@@ -185,7 +187,7 @@
           <div v-for="cat in todayCats" :key="cat.label" class="bg-primary-50 rounded-xl px-3 py-2.5 flex items-center gap-2">
             <span class="text-base">{{ cat.icon }}</span>
             <div>
-              <div class="text-xs text-gray-400 font-medium">{{ cat.label }}</div>
+              <div class="text-xs text-gray-600 font-semibold">{{ cat.label }}</div>
               <div class="text-sm font-bold text-primary-700">{{ cat.pts }} {{ t('common.pts') }}</div>
             </div>
           </div>
@@ -202,7 +204,7 @@
     <FeedbackButton />
 
     <!-- ── Footer ──────────────────────────────────────────────────────────── -->
-    <footer class="text-center text-xs text-gray-400 pt-2 pb-4">
+    <footer class="text-center text-xs text-gray-500 pt-2 pb-4">
       <p>{{ t('home.footerCredit') }}&nbsp;&nbsp;{{ t('home.footerCopyright', { year: currentYear }) }}</p>
       <p class="mt-1">
         <a href="https://www.brahmakumaris.com" target="_blank" rel="noopener" class="text-primary-500 font-medium">brahmakumaris.com</a>

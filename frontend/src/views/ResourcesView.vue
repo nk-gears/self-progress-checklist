@@ -1,10 +1,15 @@
 <template>
   <div class="p-4 space-y-4 max-w-lg mx-auto">
 
-    <div class="card text-center py-4">
-      <div class="text-3xl mb-1">📚</div>
-      <h1 class="text-xl font-extrabold text-primary-800">{{ t('resources.title') }}</h1>
-      <p class="text-sm text-gray-400 mt-0.5">{{ t('resources.subtitle') }}</p>
+    <!-- ── Hero header ────────────────────────────────────────────────────── -->
+    <div class="card bg-gradient-to-br from-primary-700 to-indigo-600 border-0 text-white">
+      <div class="text-center py-2">
+        <div class="w-14 h-14 mx-auto mb-1.5 rounded-full bg-white shadow-md flex items-center justify-center">
+          <img src="/supreme.png" class="w-11 h-11" alt="" />
+        </div>
+        <h1 class="text-xl font-extrabold tracking-tight">{{ t('resources.title') }}</h1>
+        <p class="text-primary-200 text-sm mt-0.5">{{ t('resources.subtitle') }}</p>
+      </div>
     </div>
 
     <div v-for="section in sections" :key="section.titleKey" class="card space-y-1">

@@ -41,7 +41,7 @@ export default {
     yogaTarget: 'Yoga Target',
     tapToChangeTarget: 'Tap to change your target level',
     chooseYogaTarget: 'Choose Yoga target',
-    yogaAchieved: 'Yoga Achieved',
+    yogaAchieved: 'Yoga Total Hours',
     totalYogaHoursPracticed: 'Total yoga hours practiced so far',
     totalPoints: 'Total Points',
     cumulativeAcrossDays: 'Cumulative across all days',

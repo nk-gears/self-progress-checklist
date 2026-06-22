@@ -1,11 +1,20 @@
 <template>
   <div class="p-4 space-y-4 max-w-lg mx-auto">
 
-    <!-- ── Header ─────────────────────────────────────────────────────────── -->
-    <div class="card text-center py-4">
-      <h1 class="text-xl font-extrabold text-primary-800">{{ t('chart.title') }}</h1>
-      <p class="text-sm text-gray-400 mt-0.5">{{ t('chart.tagline') }}</p>
-      <div class="flex items-center justify-center gap-2 mt-3 text-sm font-medium text-primary-700">
+    <!-- ── Hero header ────────────────────────────────────────────────────── -->
+    <div class="card bg-gradient-to-br from-primary-700 to-indigo-600 border-0 text-white">
+      <div class="text-center py-2">
+        <div class="w-14 h-14 mx-auto mb-1.5 rounded-full bg-white shadow-md flex items-center justify-center">
+          <img src="/supreme.png" class="w-11 h-11" alt="" />
+        </div>
+        <h1 class="text-xl font-extrabold tracking-tight">{{ t('chart.title') }}</h1>
+        <p class="text-primary-200 text-sm mt-0.5">{{ t('chart.tagline') }}</p>
+      </div>
+    </div>
+
+    <!-- ── Date navigation ───────────────────────────────────────────────── -->
+    <div class="card text-center py-3">
+      <div class="flex items-center justify-center gap-2 text-sm font-medium text-primary-700">
         <button @click="shiftDate(-1)" class="w-7 h-7 flex items-center justify-center rounded-full text-primary-500 hover:bg-primary-50 flex-shrink-0">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
@@ -62,8 +71,8 @@
     </div>
 
     <!-- ═══════════════════ 1. GYAN ════════════════════════════════════════ -->
-    <div class="card space-y-3 bg-emerald-50 border-emerald-100">
-      <div class="flex items-center gap-2 pb-2 border-b border-emerald-100">
+    <div class="card space-y-3 bg-emerald-50 border-2 border-emerald-200">
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-emerald-200">
         <span class="text-lg">📖</span>
         <span class="text-emerald-700 font-bold text-sm bg-emerald-100 w-6 h-6 rounded-full flex items-center justify-center">1</span>
         <h2 class="text-emerald-700">{{ t('chart.gyan') }}</h2>
@@ -74,12 +83,12 @@
         <div class="flex items-center gap-3">
           <div class="flex-1">
             <div class="font-semibold text-gray-800 text-sm">{{ t('chart.muraliAtCentre') }}</div>
-            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.muraliAtCentreDesc') }}</div>
+            <div class="text-sm text-gray-600 mt-0.5">{{ t('chart.muraliAtCentreDesc') }}</div>
           </div>
           <div class="flex items-center gap-2 flex-shrink-0">
             <button @click="form.gyanMurali = !form.gyanMurali; form.gyanMuraliStars = form.gyanMurali ? 1 : 0"
               class="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
-              :class="form.gyanMurali ? 'bg-emerald-600' : 'bg-gray-200'"
+              :class="form.gyanMurali ? 'bg-emerald-600' : 'bg-gray-300'"
             >
               <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200"
                 :class="form.gyanMurali ? 'translate-x-6' : 'translate-x-0'" />
@@ -96,13 +105,13 @@
       <div class="flex items-center gap-3">
         <div class="flex-1">
           <div class="font-semibold text-gray-800 text-sm">{{ t('chart.muraliRevision') }}</div>
-          <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.muraliRevisionDesc') }}</div>
+          <div class="text-sm text-gray-600 mt-0.5">{{ t('chart.muraliRevisionDesc') }}</div>
         </div>
         <div class="flex items-center gap-2 flex-shrink-0">
           <span v-if="form.gyanRevision" class="text-xs font-bold text-emerald-700 bg-white border border-emerald-200 px-2 py-0.5 rounded-lg">5 {{ t('common.pts') }}</span>
           <button @click="form.gyanRevision = !form.gyanRevision"
             class="relative w-12 h-6 rounded-full transition-colors duration-200"
-            :class="form.gyanRevision ? 'bg-emerald-600' : 'bg-gray-200'"
+            :class="form.gyanRevision ? 'bg-emerald-600' : 'bg-gray-300'"
           >
             <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200"
               :class="form.gyanRevision ? 'translate-x-6' : 'translate-x-0'" />
@@ -112,8 +121,8 @@
     </div>
 
     <!-- ═══════════════════ 2. YOG ════════════════════════════════════════ -->
-    <div class="card space-y-3 bg-blue-50 border-blue-100">
-      <div class="flex items-center gap-2 pb-2 border-b border-blue-100">
+    <div class="card space-y-3 bg-blue-50 border-2 border-blue-200">
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-blue-200">
         <span class="text-lg">🧘</span>
         <span class="text-blue-700 font-bold text-sm bg-blue-100 w-6 h-6 rounded-full flex items-center justify-center">2</span>
         <h2 class="text-blue-700">{{ t('chart.yog') }}</h2>
@@ -124,11 +133,11 @@
         <div class="flex items-center gap-3">
           <div class="flex-1">
             <div class="font-semibold text-gray-800 text-sm">{{ t('chart.amritvela') }}</div>
-            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.amritvelaDesc') }}</div>
+            <div class="text-sm text-gray-600 mt-0.5">{{ t('chart.amritvelaDesc') }}</div>
           </div>
           <button @click="form.yogAmritvela = !form.yogAmritvela; form.yogAmritvelaStars = form.yogAmritvela ? 1 : 0"
             class="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
-            :class="form.yogAmritvela ? 'bg-blue-600' : 'bg-gray-200'"
+            :class="form.yogAmritvela ? 'bg-emerald-600' : 'bg-gray-300'"
           >
             <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200"
               :class="form.yogAmritvela ? 'translate-x-6' : 'translate-x-0'" />
@@ -144,7 +153,7 @@
       <div class="flex items-center gap-3">
         <div class="flex-1">
           <div class="font-semibold text-gray-800 text-sm">{{ t('chart.extraYoga') }} <span class="text-gray-400 font-normal">{{ t('chart.extraYogaPts') }}</span></div>
-          <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.extraYogaDesc') }}</div>
+          <div class="text-sm text-gray-600 mt-0.5">{{ t('chart.extraYogaDesc') }}</div>
         </div>
         <div class="flex items-center gap-2 flex-shrink-0">
           <span v-if="form.yogExtraHours > 0" class="text-xs font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg">{{ Math.floor(form.yogExtraHours * 10) }} {{ t('common.pts') }}</span>
@@ -161,11 +170,11 @@
         <div class="flex items-center gap-3">
           <div class="flex-1">
             <div class="font-semibold text-gray-800 text-sm">{{ t('chart.trafficControl') }}</div>
-            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.trafficControlDesc') }}</div>
+            <div class="text-sm text-gray-600 mt-0.5">{{ t('chart.trafficControlDesc') }}</div>
           </div>
           <button @click="form.yogTrafficControl = !form.yogTrafficControl; form.yogTrafficStars = form.yogTrafficControl ? 1 : 0"
             class="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
-            :class="form.yogTrafficControl ? 'bg-blue-600' : 'bg-gray-200'"
+            :class="form.yogTrafficControl ? 'bg-emerald-600' : 'bg-gray-300'"
           >
             <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200"
               :class="form.yogTrafficControl ? 'translate-x-6' : 'translate-x-0'" />
@@ -179,8 +188,8 @@
     </div>
 
     <!-- ═══════════════════ 3. DHARANA ══════════════════════════════════════ -->
-    <div class="card space-y-3 bg-violet-50 border-violet-100">
-      <div class="flex items-center gap-2 pb-2 border-b border-violet-100">
+    <div class="card space-y-3 bg-violet-50 border-2 border-violet-200">
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-violet-200">
         <span class="text-lg">🎯</span>
         <span class="text-violet-700 font-bold text-sm bg-violet-100 w-6 h-6 rounded-full flex items-center justify-center">3</span>
         <h2 class="text-violet-700">{{ t('chart.dharana') }} <span class="text-gray-400 font-normal text-base">{{ t('chart.dharanaSubtitle') }}</span></h2>
@@ -189,7 +198,7 @@
       <!-- Aim -->
       <div>
         <div class="font-semibold text-gray-800 text-sm mb-1.5">{{ t('chart.personalAim') }}</div>
-        <div class="text-xs text-gray-400 mb-2">{{ t('chart.personalAimDesc') }}</div>
+        <div class="text-sm text-gray-600 mb-2">{{ t('chart.personalAimDesc') }}</div>
         <div class="flex gap-2">
           <select v-model="dharanaAimChoice"
             class="flex-1 input-field text-sm py-2.5"
@@ -207,13 +216,13 @@
       <div class="flex items-center gap-3">
         <div class="flex-1">
           <div class="font-semibold text-gray-800 text-sm">{{ t('chart.morningPledge') }}</div>
-          <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.morningPledgeDesc') }}</div>
+          <div class="text-sm text-gray-600 mt-0.5">{{ t('chart.morningPledgeDesc') }}</div>
         </div>
         <div class="flex items-center gap-2 flex-shrink-0">
           <span v-if="form.dharanaMorningPledge" class="text-xs font-bold text-violet-700 bg-white border border-violet-200 px-2 py-0.5 rounded-lg">5 {{ t('common.pts') }}</span>
           <button @click="form.dharanaMorningPledge = !form.dharanaMorningPledge"
             class="relative w-12 h-6 rounded-full transition-colors duration-200"
-            :class="form.dharanaMorningPledge ? 'bg-violet-600' : 'bg-gray-200'"
+            :class="form.dharanaMorningPledge ? 'bg-emerald-600' : 'bg-gray-300'"
           >
             <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200"
               :class="form.dharanaMorningPledge ? 'translate-x-6' : 'translate-x-0'" />
@@ -226,11 +235,11 @@
         <div class="flex items-center gap-3">
           <div class="flex-1">
             <div class="font-semibold text-gray-800 text-sm">{{ t('chart.nightCheck') }}</div>
-            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.nightCheckDesc') }}</div>
+            <div class="text-sm text-gray-600 mt-0.5">{{ t('chart.nightCheckDesc') }}</div>
           </div>
           <button @click="form.dharanaNightCheck = !form.dharanaNightCheck; form.dharanaNightStars = form.dharanaNightCheck ? 1 : 0"
             class="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
-            :class="form.dharanaNightCheck ? 'bg-violet-600' : 'bg-gray-200'"
+            :class="form.dharanaNightCheck ? 'bg-emerald-600' : 'bg-gray-300'"
           >
             <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200"
               :class="form.dharanaNightCheck ? 'translate-x-6' : 'translate-x-0'" />
@@ -244,8 +253,8 @@
     </div>
 
     <!-- ═══════════════════ 4. SEVA ════════════════════════════════════════ -->
-    <div class="card space-y-3 bg-orange-50 border-orange-100">
-      <div class="flex items-center gap-2 pb-2 border-b border-orange-100">
+    <div class="card space-y-3 bg-orange-50 border-2 border-orange-200">
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-orange-200">
         <span class="text-lg">🤝</span>
         <span class="text-orange-700 font-bold text-sm bg-orange-100 w-6 h-6 rounded-full flex items-center justify-center">4</span>
         <h2 class="text-orange-700">{{ t('chart.seva') }}</h2>
@@ -255,11 +264,11 @@
         <div class="flex items-center gap-3">
           <div class="flex-1">
             <div class="font-semibold text-gray-800 text-sm">{{ t('chart.sevaMin') }}</div>
-            <div class="text-xs text-gray-400 mt-0.5">{{ t('chart.sevaMinDesc') }}</div>
+            <div class="text-sm text-gray-600 mt-0.5">{{ t('chart.sevaMinDesc') }}</div>
           </div>
           <button @click="form.sevaDone = !form.sevaDone; form.sevaStars = form.sevaDone ? 1 : 0"
             class="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
-            :class="form.sevaDone ? 'bg-orange-600' : 'bg-gray-200'"
+            :class="form.sevaDone ? 'bg-emerald-600' : 'bg-gray-300'"
           >
             <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200"
               :class="form.sevaDone ? 'translate-x-6' : 'translate-x-0'" />

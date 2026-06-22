@@ -41,7 +41,7 @@ export default {
     yogaTarget: 'योग लक्ष्य',
     tapToChangeTarget: 'अपना लक्ष्य स्तर बदलने के लिए टैप करें',
     chooseYogaTarget: 'योग लक्ष्य चुनें',
-    yogaAchieved: 'प्राप्त योग',
+    yogaAchieved: 'कुल योग घंटे',
     totalYogaHoursPracticed: 'अब तक अभ्यास किए गए कुल योग घंटे',
     totalPoints: 'कुल अंक',
     cumulativeAcrossDays: 'सभी दिनों में संचयी',

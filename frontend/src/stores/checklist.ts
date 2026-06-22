@@ -92,8 +92,8 @@ export const useChecklistStore = defineStore('checklist', () => {
     const totalDays      = all.length
     const avgPointsPerDay = Math.round(totalPoints / totalDays)
     const amritvelaCount = all.filter(e => e.yogAmritvela).length
-    // Amritvela counts as a 1-hour session on top of any logged extra yoga hours
-    const totalYogaHours = all.reduce((s, e) => s + (e.yogAmritvela ? 1 : 0) + e.yogExtraHours, 0)
+    // Amritvela counts as a 45-minute session on top of any logged extra yoga hours
+    const totalYogaHours = all.reduce((s, e) => s + (e.yogAmritvela ? 0.75 : 0) + e.yogExtraHours, 0)
 
     const _now      = new Date()
     const _yest     = new Date(); _yest.setDate(_yest.getDate() - 1)
