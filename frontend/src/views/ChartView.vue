@@ -295,11 +295,16 @@
       </div>
     </div>
 
-    <div class="pb-6">
+    <div>
       <button @click="save" :disabled="saving" class="btn-primary w-full text-base py-4">
         <span v-if="saving">Saving…</span>
         <span v-else>Save Today's Entry</span>
       </button>
+    </div>
+
+    <!-- ── Feedback ────────────────────────────────────────────────────────── -->
+    <div class="pb-6">
+      <FeedbackButton />
     </div>
   </div>
 
@@ -321,6 +326,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useChecklistStore } from '@/stores/checklist'
 import { calcPoints } from '@/services/mockData'
 import StarRating from '@/components/StarRating.vue'
+import FeedbackButton from '@/components/FeedbackButton.vue'
 import { MAX_BASE_POINTS } from '@/types'
 
 function localStr(d: Date): string {

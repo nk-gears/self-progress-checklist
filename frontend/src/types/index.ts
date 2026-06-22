@@ -43,6 +43,7 @@ export interface EntryStats {
   longestStreak: number
   avgPointsPerDay: number
   amritvelaCount: number
+  totalYogaHours: number
 }
 
 export type ChartFilter   = '7d' | '30d' | 'month' | 'all'

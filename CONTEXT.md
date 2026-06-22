@@ -2,7 +2,7 @@
 
 ## Purpose
 Daily self-checking tool for Brahma Kumaris (BK) NGO members.
-"Self progress Chart" — Self Transformation for Baba's Pratyakshatha.
+"Self Progress Chart" — Self Transformation for Baba's Pratyakshatha.
 
 ## Tech Stack
 Identical to `med-progress` (sibling project):

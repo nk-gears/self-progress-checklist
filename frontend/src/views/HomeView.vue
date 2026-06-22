@@ -5,7 +5,7 @@
     <div class="card bg-gradient-to-br from-primary-700 to-indigo-600 border-0 text-white">
       <div class="text-center py-2">
         <div class="text-3xl mb-1">🌟</div>
-        <h1 class="text-xl font-extrabold tracking-tight">Self progress Chart</h1>
+        <h1 class="text-xl font-extrabold tracking-tight">Self Progress Chart</h1>
         <p class="text-primary-200 text-sm mt-0.5">Step towards Sampoornatha</p>
       </div>
     </div>
@@ -76,14 +76,14 @@
         </Transition>
       </Teleport>
 
-      <!-- Amritvela Achieved -->
+      <!-- Yoga Achieved -->
       <div class="card flex items-center gap-4">
         <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center text-xl flex-shrink-0">🏳️</div>
         <div class="flex-1">
           <div class="font-semibold text-gray-700">Yoga Achieved</div>
-          <div class="text-xs text-gray-400">Days with Amritvela completed</div>
+          <div class="text-xs text-gray-400">Total yoga hours practiced so far</div>
         </div>
-        <div class="text-2xl font-extrabold text-primary-700">{{ stats.amritvelaCount }}</div>
+        <div class="text-2xl font-extrabold text-primary-700">{{ stats.totalYogaHours }}</div>
       </div>
 
       <!-- Total Points -->
@@ -198,7 +198,16 @@
       </div>
     </div>
 
-    <div class="pb-4"></div>
+    <!-- ── Feedback ────────────────────────────────────────────────────────── -->
+    <FeedbackButton />
+
+    <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+    <footer class="text-center text-xs text-gray-400 pt-2 pb-4">
+      <p>Designed &amp; Developed by Brahma Kumaris - Chennai.&nbsp;&nbsp;Copyrights {{ currentYear }}</p>
+      <p class="mt-1">
+        <a href="https://www.brahmakumaris.com" target="_blank" rel="noopener" class="text-primary-500 font-medium">brahmakumaris.com</a>
+      </p>
+    </footer>
   </div>
 </template>
 
@@ -207,6 +216,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useChecklistStore } from '@/stores/checklist'
+import FeedbackButton from '@/components/FeedbackButton.vue'
 import type { ChartFilter, ChartCategory } from '@/types'
 
 const router    = useRouter()
@@ -312,6 +322,8 @@ const shortDate = (date: string) => {
 }
 
 onMounted(async () => { await store.loadAllEntries() })
+
+const currentYear = new Date().getFullYear()
 </script>
 
 <style scoped>

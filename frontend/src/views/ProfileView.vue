@@ -97,8 +97,12 @@
           <div class="text-2xl font-extrabold text-purple-700">⭐ {{ stats.longestStreak }}</div>
           <div class="text-xs text-gray-500 mt-1 font-medium">Best Streak</div>
         </div>
-        <div class="bg-primary-50 rounded-xl p-4 text-center col-span-2">
-          <div class="text-2xl font-extrabold text-primary-700">🧘 {{ stats.amritvelaCount }}</div>
+        <div class="bg-blue-50 rounded-xl p-4 text-center">
+          <div class="text-2xl font-extrabold text-blue-700">🧘 {{ stats.totalYogaHours }}</div>
+          <div class="text-xs text-gray-500 mt-1 font-medium">Yoga Hours</div>
+        </div>
+        <div class="bg-primary-50 rounded-xl p-4 text-center">
+          <div class="text-2xl font-extrabold text-primary-700">🌅 {{ stats.amritvelaCount }}</div>
           <div class="text-xs text-gray-500 mt-1 font-medium">Amritvela Days</div>
         </div>
       </div>

@@ -85,13 +85,15 @@ export const useChecklistStore = defineStore('checklist', () => {
   const stats = computed((): EntryStats => {
     const all = allSorted.value
     if (!all.length) {
-      return { totalPoints: 0, totalDays: 0, currentStreak: 0, longestStreak: 0, avgPointsPerDay: 0, amritvelaCount: 0 }
+      return { totalPoints: 0, totalDays: 0, currentStreak: 0, longestStreak: 0, avgPointsPerDay: 0, amritvelaCount: 0, totalYogaHours: 0 }
     }
 
     const totalPoints    = all.reduce((s, e) => s + e.totalPoints, 0)
     const totalDays      = all.length
     const avgPointsPerDay = Math.round(totalPoints / totalDays)
     const amritvelaCount = all.filter(e => e.yogAmritvela).length
+    // Amritvela counts as a 1-hour session on top of any logged extra yoga hours
+    const totalYogaHours = all.reduce((s, e) => s + (e.yogAmritvela ? 1 : 0) + e.yogExtraHours, 0)
 
     const _now      = new Date()
     const _yest     = new Date(); _yest.setDate(_yest.getDate() - 1)
@@ -116,7 +118,7 @@ export const useChecklistStore = defineStore('checklist', () => {
       longestStreak = Math.max(longestStreak, temp)
     }
 
-    return { totalPoints, totalDays, currentStreak, longestStreak, avgPointsPerDay, amritvelaCount }
+    return { totalPoints, totalDays, currentStreak, longestStreak, avgPointsPerDay, amritvelaCount, totalYogaHours }
   })
 
   const getDailyData = (filter: ChartFilter, category: ChartCategory): { date: string; value: number }[] => {
