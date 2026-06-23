@@ -49,25 +49,18 @@ const sections = [
     titleKey: 'bkWebsites',
     links: [
       { icon: '🌐', label: 'BK Official Website', url: 'https://www.brahmakumaris.com', description: 'Brahma Kumaris World Spiritual University' },
-      { icon: '📺', label: 'BK YouTube Channel', url: 'https://www.youtube.com/@BrahmaKumaris', description: 'Spiritual knowledge and meditation videos' },
-      { icon: '🎙️', label: 'Murali Online', url: 'https://www.bkwsu.org/murali', description: 'Daily Murali classes and recordings' },
+      { icon: '📺', label: 'BK YouTube - HQ', url: 'https://www.youtube.com/@BrahmaKumaris', description: 'Spiritual knowledge and meditation videos' },
+      { icon: '🎙️', label: 'BK Tamil YouTube', url: 'https://www.youtube.com/@brahmakumaristn', description: 'Daily Murali classes and recordings' },
+      { icon: '🎙️', label: 'BK Tamil Live', url: 'https://www.youtube.com/@brahmakumaristn/live', description: 'Live Events' },
     ],
   },
   {
     titleKey: 'meditationStudy',
     links: [
       { icon: '🧘', label: 'Online Meditation', url: 'https://www.brahmakumaris.com/meditation', description: 'Guided meditation resources' },
-      { icon: '📖', label: 'Spiritual Study', url: 'https://www.bkwsu.org', description: 'BK World Spiritual University resources' },
+      { icon: '📖', label: 'Spiritual Study', url: 'https://madhubanmurli.org/', description: 'Daily Murli - Official' },
       { icon: '💫', label: 'Daily Thoughts', url: 'https://www.brahmakumaris.com/thoughts', description: 'Daily inspirational thoughts from Baba' },
     ],
-  },
-  {
-    titleKey: 'selfTransformation',
-    links: [
-      { icon: '⭐', label: 'Soul Sustenance', url: 'https://www.soulsustenance.com', description: 'Daily spiritual food for the soul' },
-      { icon: '🎵', label: 'BK Music', url: 'https://www.youtube.com/@bkshivani', description: 'Spiritual music and bhajans' },
-      { icon: '📱', label: 'Awakening with BK', url: 'https://www.awakeningwithbrahmakumaris.com', description: 'Online programs and workshops' },
-    ],
-  },
+  }
 ]
 </script>
