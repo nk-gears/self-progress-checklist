@@ -1,1 +1,0 @@
-if('serviceWorker' in navigator) navigator.serviceWorker.register('/bk-chart/dev-sw.js?dev-sw', { scope: '/bk-chart/', type: 'classic' })

@@ -5,8 +5,7 @@ import hi from './locales/hi'
 
 export const SUPPORTED_LOCALES = [
   { code: 'en', label: 'English' },
-  { code: 'ta', label: 'தமிழ்' },
-  { code: 'hi', label: 'हिन्दी' },
+  { code: 'ta', label: 'தமிழ்' }
 ] as const
 
 export type LocaleCode = typeof SUPPORTED_LOCALES[number]['code']

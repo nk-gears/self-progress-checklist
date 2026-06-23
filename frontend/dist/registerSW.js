@@ -1,1 +1,0 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/bk-chart/sw.js', { scope: '/bk-chart/' })})}

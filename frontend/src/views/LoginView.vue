@@ -43,6 +43,15 @@
         {{ t('login.privacyNote') }}
       </p>
     </div>
+
+    <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+    <footer class="text-center text-xs text-primary-200 pt-6 pb-2">
+      <p>{{ t('home.footerCredit') }}&nbsp;&nbsp;{{ t('home.footerCopyright', { year: currentYear }) }}</p>
+      <p class="mt-1">
+        <a href="https://www.brahmakumaris.com" target="_blank" rel="noopener" class="text-white font-medium">brahmakumaris.com</a>
+      </p>
+      <img src="/supreme.png" class="w-8 h-8 mx-auto mt-3 opacity-90 brightness-0 invert" alt="" />
+    </footer>
   </div>
 </template>
 
@@ -63,6 +72,7 @@ const googleBtnRef = ref<HTMLElement | null>(null)
 const googleReady  = ref(false)
 const loading      = ref(false)
 const errorMsg     = ref('')
+const currentYear  = new Date().getFullYear()
 
 const isMock = computed(() => devStore.isMock && devToolsEnabled)
 
