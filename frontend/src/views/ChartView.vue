@@ -71,8 +71,8 @@
     </div>
 
     <!-- ═══════════════════ 1. GYAN ════════════════════════════════════════ -->
-    <div class="card space-y-3 bg-emerald-50 border-2 border-emerald-200">
-      <div class="flex items-center gap-2 pb-2 border-b-2 border-emerald-200">
+    <div class="card space-y-3 bg-emerald-50 border-4 border-primary-700">
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-primary-700">
         <span class="text-lg">📖</span>
         <span class="text-emerald-700 font-bold text-sm bg-emerald-100 w-6 h-6 rounded-full flex items-center justify-center">1</span>
         <h2 class="text-emerald-700">{{ t('chart.gyan') }}</h2>
@@ -121,8 +121,8 @@
     </div>
 
     <!-- ═══════════════════ 2. YOG ════════════════════════════════════════ -->
-    <div class="card space-y-3 bg-blue-50 border-2 border-blue-200">
-      <div class="flex items-center gap-2 pb-2 border-b-2 border-blue-200">
+    <div class="card space-y-3 bg-blue-50 border-4 border-primary-700">
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-primary-700">
         <span class="text-lg">🧘</span>
         <span class="text-blue-700 font-bold text-sm bg-blue-100 w-6 h-6 rounded-full flex items-center justify-center">2</span>
         <h2 class="text-blue-700">{{ t('chart.yog') }}</h2>
@@ -188,8 +188,8 @@
     </div>
 
     <!-- ═══════════════════ 3. DHARANA ══════════════════════════════════════ -->
-    <div class="card space-y-3 bg-violet-50 border-2 border-violet-200">
-      <div class="flex items-center gap-2 pb-2 border-b-2 border-violet-200">
+    <div class="card space-y-3 bg-violet-50 border-4 border-primary-700">
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-primary-700">
         <span class="text-lg">🎯</span>
         <span class="text-violet-700 font-bold text-sm bg-violet-100 w-6 h-6 rounded-full flex items-center justify-center">3</span>
         <h2 class="text-violet-700">{{ t('chart.dharana') }} <span class="text-gray-400 font-normal text-base">{{ t('chart.dharanaSubtitle') }}</span></h2>
@@ -253,8 +253,8 @@
     </div>
 
     <!-- ═══════════════════ 4. SEVA ════════════════════════════════════════ -->
-    <div class="card space-y-3 bg-orange-50 border-2 border-orange-200">
-      <div class="flex items-center gap-2 pb-2 border-b-2 border-orange-200">
+    <div class="card space-y-3 bg-orange-50 border-4 border-primary-700">
+      <div class="flex items-center gap-2 pb-2 border-b-2 border-primary-700">
         <span class="text-lg">🤝</span>
         <span class="text-orange-700 font-bold text-sm bg-orange-100 w-6 h-6 rounded-full flex items-center justify-center">4</span>
         <h2 class="text-orange-700">{{ t('chart.seva') }}</h2>
