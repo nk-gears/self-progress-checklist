@@ -73,6 +73,8 @@ export default {
       diamond: 'Diamond',
       platinum: 'Platinum',
     },
+    communityTotalUsers: 'Total Users',
+    communityActiveUsers: 'Active This Week',
     footerCredit: "Designed & Developed by Brahma Kumaris - Chennai.",
     footerCopyright: 'Copyrights {year}',
   },

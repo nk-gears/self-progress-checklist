@@ -12,6 +12,20 @@
       </div>
     </div>
 
+    <!-- ── Community stats ──────────────────────────────────────────────────── -->
+    <div v-if="communityStats" class="card bg-primary-50 border border-primary-100">
+      <div class="flex divide-x divide-primary-100">
+        <div class="flex-1 text-center py-1">
+          <div class="text-2xl font-extrabold text-primary-700">{{ communityStats.totalUsers }}</div>
+          <div class="text-xs text-gray-500 mt-0.5">{{ t('home.communityTotalUsers') }}</div>
+        </div>
+        <div class="flex-1 text-center py-1">
+          <div class="text-2xl font-extrabold text-emerald-600">{{ communityStats.activeUsers }}</div>
+          <div class="text-xs text-gray-500 mt-0.5">{{ t('home.communityActiveUsers') }}</div>
+        </div>
+      </div>
+    </div>
+
     <!-- ── User info card ─────────────────────────────────────────────────── -->
     <div class="card">
       <div class="flex items-stretch divide-x divide-primary-100">
@@ -219,6 +233,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '@/stores/auth'
 import { useChecklistStore } from '@/stores/checklist'
+import { api } from '@/services/api'
 import FeedbackButton from '@/components/FeedbackButton.vue'
 import type { ChartFilter, ChartCategory } from '@/types'
 
@@ -227,7 +242,8 @@ const router    = useRouter()
 const auth      = useAuthStore()
 const store     = useChecklistStore()
 
-const user  = computed(() => auth.user)
+const user           = computed(() => auth.user)
+const communityStats = ref<{ totalUsers: number; activeUsers: number } | null>(null)
 const stats = computed(() => store.stats)
 const todayEntry = computed(() => store.todayEntry)
 
@@ -325,7 +341,13 @@ const shortDate = (date: string) => {
   return `${d.getMonth() + 1}/${d.getDate()}`
 }
 
-onMounted(async () => { await store.loadAllEntries() })
+onMounted(async () => {
+  await store.loadAllEntries()
+  try {
+    const s = await api.getStats()
+    communityStats.value = { totalUsers: s.totalUsers, activeUsers: s.activeUsers }
+  } catch { /* silently ignore if stats fail */ }
+})
 
 const currentYear = new Date().getFullYear()
 </script>

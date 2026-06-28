@@ -19,6 +19,7 @@ switch ($endpoint) {
     case 'google':  handleGoogleAuth();       break;
     case 'entries': handleEntries();          break;
     case 'profile': handleProfile($sub);      break;
+    case 'stats':   handleStats();            break;
     default:
         sendResponse(['success' => false, 'message' => "Unknown endpoint '$endpoint'"], 404);
 }
@@ -213,6 +214,25 @@ function mapEntry(array $r): array {
         'remarks'              => $r['remarks'] ?? '',
         'updatedAt'            => $r['updated_at'],
     ];
+}
+
+// ── Community Stats (public, no auth) ────────────────────────────────────────
+
+function handleStats() {
+    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+        sendResponse(['success' => false, 'message' => 'Method not allowed'], 405);
+    }
+    try {
+        $totalUsers  = (int)fetchRow('SELECT COUNT(*) AS c FROM spc_users', [])['c'];
+        $activeUsers = (int)fetchRow(
+            'SELECT COUNT(DISTINCT user_id) AS c FROM spc_daily_entries WHERE entry_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)',
+            []
+        )['c'];
+        sendResponse(['success' => true, 'totalUsers' => $totalUsers, 'activeUsers' => $activeUsers]);
+    } catch (Exception $e) {
+        error_log('Stats error: ' . $e->getMessage());
+        sendResponse(['success' => false, 'message' => 'Failed to load stats'], 500);
+    }
 }
 
 // ── Profile ───────────────────────────────────────────────────────────────────

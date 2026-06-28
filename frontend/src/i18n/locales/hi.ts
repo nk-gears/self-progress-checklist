@@ -73,6 +73,8 @@ export default {
       diamond: 'डायमंड',
       platinum: 'प्लैटिनम',
     },
+    communityTotalUsers: 'कुल उपयोगकर्ता',
+    communityActiveUsers: 'इस सप्ताह सक्रिय',
     footerCredit: 'ब्रह्म कुमारीज़ - चेन्नई द्वारा डिज़ाइन और विकसित।',
     footerCopyright: 'कॉपीराइट {year}',
   },

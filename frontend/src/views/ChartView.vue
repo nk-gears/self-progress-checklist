@@ -294,7 +294,7 @@
         <div>
           <div class="text-sm font-medium opacity-80">{{ t('chart.totalPointsToday') }}</div>
           <div class="text-4xl font-extrabold">{{ currentPoints }}</div>
-          <div class="text-xs opacity-70 mt-0.5">{{ t('chart.outOfBasePoints', { max: MAX_BASE_POINTS }) }}</div>
+          <!-- <div class="text-xs opacity-70 mt-0.5">{{ t('chart.outOfBasePoints', { max: MAX_BASE_POINTS }) }}</div> -->
         </div>
         <div class="text-right">
           <div v-if="currentPoints === MAX_BASE_POINTS" class="text-amber-300 font-bold text-sm mb-1">{{ t('chart.perfectDay') }}</div>
@@ -454,7 +454,11 @@ const loadForDate = () => {
       dharanaNightCheck: false, dharanaNightStars: 0,
       sevaDone: false, sevaStars: 0, remarks: '',
     })
-    setDharanaAim('')
+    // Pre-fill aim from the last entry if it was a custom "Other" value
+    const lastEntry = store.recentEntries.find(e => e.date < selectedDate.value)
+    const lastAim = lastEntry?.dharanaAim ?? ''
+    const isCustomAim = lastAim && !DHARANA_AIMS.includes(lastAim)
+    setDharanaAim(isCustomAim ? lastAim : '')
   }
 }
 

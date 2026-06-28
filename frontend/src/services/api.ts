@@ -72,6 +72,9 @@ export const api = {
 
   updateProfile: (display_name: string, centre_name: string) =>
     request<{ success: boolean }>('PUT', '/profile', { display_name, centre_name }),
+
+  getStats: () =>
+    request<{ success: boolean; totalUsers: number; activeUsers: number }>('GET', '/stats'),
 }
 
 export { TOKEN_KEY }
