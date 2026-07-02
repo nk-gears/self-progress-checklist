@@ -155,6 +155,7 @@ export default {
     bkWebsites: 'பி.கு. இணையதளங்கள்',
     meditationStudy: 'தியானம் & படிப்பு',
     selfTransformation: 'சுய மாற்றம்',
+    musicAndSongs: 'இசை & பாடல்கள்',
   },
   feedback: {
     title: 'கருத்து & பரிந்துரைகள்',

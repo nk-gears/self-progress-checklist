@@ -61,6 +61,13 @@ const sections = [
       { icon: '📖', label: 'Spiritual Study', url: 'https://madhubanmurli.org/', description: 'Daily Murli - Official' },
       { icon: '💫', label: 'Daily Thoughts', url: 'https://www.brahmakumaris.com/thoughts', description: 'Daily inspirational thoughts from Baba' },
     ],
-  }
+  },
+  {
+    titleKey: 'musicAndSongs',
+    links: [
+      { icon: '🎵', label: 'BK Audio - Songs & Albums', url: 'https://www.brahmakumaris.com/bkaudio/hin/songs/album', description: 'Brahma Kumaris devotional songs and albums' },
+      { icon: '🎶', label: 'Meditation Music', url: 'https://happy-village.org/med-musics/', description: 'Peaceful meditation music collection' },
+    ],
+  },
 ]
 </script>

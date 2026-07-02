@@ -4,6 +4,7 @@ export interface User {
   displayName: string | null
   photoURL: string | null
   centreName: string | null
+  joinedAt: string | null  // ISO date string from server created_at
 }
 
 export interface DailyEntry {

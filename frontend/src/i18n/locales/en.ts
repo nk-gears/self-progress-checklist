@@ -155,6 +155,7 @@ export default {
     bkWebsites: 'BK Websites',
     meditationStudy: 'Meditation & Study',
     selfTransformation: 'Self-Transformation',
+    musicAndSongs: 'Music & Songs',
   },
   feedback: {
     title: 'Feedback & Suggestions',

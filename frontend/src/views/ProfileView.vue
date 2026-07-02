@@ -173,7 +173,11 @@ const router  = useRouter()
 const user    = computed(() => auth.user)
 const stats   = computed(() => store.stats)
 
-const joinedDate = computed(() => new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }))
+const joinedDate = computed(() => {
+  const raw = user.value?.joinedAt
+  if (!raw) return '—'
+  return new Date(raw).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
+})
 
 // ── Avatar card background (editable, stored locally) ───────────────────────
 

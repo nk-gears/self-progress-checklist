@@ -7,13 +7,14 @@ import type { User } from '@/types'
 
 const MOCK_LS_KEY = 'spc_mock_logged_in'
 
-function mapUser(u: ApiUser): User {
+function mapUser(u: ApiUser & { created_at?: string }): User {
   return {
     uid:         String(u.id),
     email:       u.email,
     displayName: u.display_name ?? u.email.split('@')[0],
     photoURL:    null,
     centreName:  u.centre_name ?? null,
+    joinedAt:    u.created_at ?? null,
   }
 }
 

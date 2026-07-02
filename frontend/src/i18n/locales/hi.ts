@@ -155,6 +155,7 @@ export default {
     bkWebsites: 'बीके वेबसाइटें',
     meditationStudy: 'मेडिटेशन और अध्ययन',
     selfTransformation: 'स्व-परिवर्तन',
+    musicAndSongs: 'संगीत और गाने',
   },
   feedback: {
     title: 'प्रतिक्रिया और सुझाव',

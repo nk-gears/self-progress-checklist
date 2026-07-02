@@ -6,6 +6,7 @@ export const MOCK_USER: User = {
   displayName: 'BK Vivek',
   photoURL:    null,
   centreName:  'Chennai Shantidham',
+  joinedAt:    '2025-01-01T00:00:00',
 }
 
 const DHARANA_AIMS = [
